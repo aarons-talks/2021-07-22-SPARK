@@ -13,12 +13,3 @@ caddy run
 After you run this, the slides will be available in your browser at:
 
 http://localhost:9090
-
-## Code
-
-The other 3 directories are Go code:
-
-- [`origin/`](./origin) - a simple HTTP server intended to be the "application" that we're proxying
-- [`scaler/`](./scaler) - a simple HTTP server intended to represent the system that scales replicas of the origin up and down. It also reports the number of replicas of the origin.
-    >The scaler doesn't actually scale replicas in this demo. It just reports a fake number of replicas
-- [`proxy/`](./proxy) - the service that accepts HTTP requests and forwards them to the origin. The proxy uses the scaler to determine how many replicas of the origin exist (it holds the request if there are no replicas) and intelligently forwards requests to the origin based on whether it can establish a TCP connection with it.
