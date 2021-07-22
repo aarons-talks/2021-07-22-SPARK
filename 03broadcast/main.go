@@ -15,7 +15,9 @@ func main() {
 		go waiter(i, bcastCh, &wg)
 	}
 
+	fmt.Println("going to sleep...")
 	time.Sleep(500 * time.Millisecond)
+	fmt.Println("broadcasting to all", numWaiters, "waiters")
 	close(bcastCh)
 	wg.Wait()
 	fmt.Println("done")

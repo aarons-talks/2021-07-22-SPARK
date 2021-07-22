@@ -12,6 +12,9 @@ func main() {
 	var wg sync.WaitGroup
 	rand.Seed(time.Now().UnixNano())
 	const numWorkers = 10
+	// we could use a channel or a sync.WaitGroup, as we've seen in previous
+	// examples, but this is the preferred way to do cancellation and
+	// and timeout across goroutines in Go.
 	ctx, cancel := context.WithCancel(context.Background())
 	resCh := make(chan workerResult)
 	for i := 0; i < numWorkers; i++ {
